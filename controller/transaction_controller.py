@@ -1,4 +1,3 @@
-# ehtemam
 from model.da.transaction_da import TransactionDa
 from model.entity.transaction import Transaction
 
