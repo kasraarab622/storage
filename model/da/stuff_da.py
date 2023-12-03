@@ -1,4 +1,3 @@
-# ehtemam
 from model.da.database import DataBaseManager
 from model.entity.stuff import Stuff
 
