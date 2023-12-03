@@ -1,4 +1,3 @@
-# ehtemam
 from model.da.person_da import PersonDa
 from model.entity.person import Person
 
