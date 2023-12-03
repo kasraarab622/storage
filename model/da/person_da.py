@@ -1,4 +1,3 @@
-# ehtemam
 from model.entity.person import Person
 from model.da.database import DataBaseManager
 
