@@ -1,13 +1,19 @@
-# ehtemam
 from model.da.person_da import PersonDa
 from model.entity.person import Person
 
 
 class PersonController:
     @classmethod
-    def save(cls, name, family, phone_number, email, username, password):
+    def save(cls, name, family, phone_number, email, username, password,active):
         try:
-            person = Person( name, family, phone_number, email, username, password)
+            person = Person( name, family, phone_number, email, username, password,active)
+            person.name =name
+            person.family=family
+            person.phone_number = phone_number
+            person.email=email
+            person.username=username
+            person.password=password
+            person.active=active
             da = PersonDa()
             da.save(Person)
             return True, Person
@@ -45,7 +51,7 @@ class PersonController:
     def find_all(cls):
         try:
             da = PersonDa()
-            return da.find_all()
+            return da.find_all(Person)
         except Exception as e:
             return e
 

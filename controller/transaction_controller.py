@@ -1,4 +1,3 @@
-# ehtemam
 from model.da.transaction_da import TransactionDa
 from model.entity.transaction import Transaction
 
@@ -41,6 +40,14 @@ class TransactionController:
             Transaction = da.find_by_id(id)
             da.remove(id)
             return True, id
+        except Exception as e:
+            return e
+
+    @classmethod
+    def find_all(cls):
+        try:
+            da = TransactionDa()
+            return da.find_all(Transaction)
         except Exception as e:
             return e
 

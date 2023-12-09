@@ -1,4 +1,3 @@
-# ehtemam
 from model.da.stuff_da import StuffDa
 from model.entity.stuff import Stuff
 

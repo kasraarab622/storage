@@ -1,7 +1,6 @@
 from model.da.stuffgroup_da import StuffGroupDa
 from model.entity.stuff_group import StuffGroup
 
-
 class StuffGroupController:
     @classmethod
     def save(cls, title, parent_id):
@@ -13,7 +12,6 @@ class StuffGroupController:
             da.save(StuffGroup)
             return True, stuffgroup
         except Exception as e:
-            e.with_traceback()
             return e
 
     @classmethod
@@ -34,15 +32,22 @@ class StuffGroupController:
         try:
             da = StuffGroupDa()
             StuffGroup = da.find_by_id(id)
-            da.remove(StuffGroup)
+            da.remove(id)
         except Exception as e:
             return e
 
     @classmethod
+    def find_all(cls):
+        try:
+            da = StuffGroupDa
+            return da.find_all(StuffGroup)
+        except Exception as e:
+            return e
+    @classmethod
     def find_by_id(cls, id):
         try:
             da = StuffGroupDa()
-            return da.find_by_id(StuffGroup, id)
+            return da.find_by_id(id)
         except Exception as e:
             return e
 
@@ -50,7 +55,7 @@ class StuffGroupController:
     def find_by_title(cls, title):
         try:
             da = StuffGroupDa()
-            return da.find_by_title(StuffGroup, title)
+            return da.find_by_title(title)
         except Exception as e:
             return e
 
@@ -58,6 +63,6 @@ class StuffGroupController:
     def find_by_parent_id(cls, parent_id):
         try:
             da = StuffGroupDa()
-            return da.find_by_perent_id(StuffGroup, parent_id)
+            return da.find_by_perent_id(parent_id)
         except Exception as e:
             return e
