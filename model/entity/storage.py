@@ -1,6 +1,7 @@
-from model.entity.base import Base
 from sqlalchemy import Column, Integer, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
+
+from model.entity import *
 
 
 class Storage(Base):
@@ -11,14 +12,11 @@ class Storage(Base):
     count = Column(Integer)
     deleted = Column(Boolean, default=False)
 
-    stuff = relationship("Stuff",back_populates="storage")
+    stuff = relationship("Stuff", back_populates="storage")
 
-    def __init__(self, stuff_id, count):
-        self.stuff_id = stuff_id
+    def __init__(self, stuff, count):
+        self.stuff = stuff
         self.count = count
-
-    # def __repr__(self):
-    #     return str(self.__dict__)
     #
     # @property
     # def stuff_id(self):

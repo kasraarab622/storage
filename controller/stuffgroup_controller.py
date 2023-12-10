@@ -5,36 +5,36 @@ class StuffGroupController:
     @classmethod
     def save(cls, title, parent_id):
         try:
-            stuffgroup = StuffGroupDa()
+            stuffgroup = StuffGroupDa(title,parent_id)
             stuffgroup.title = title
             stuffgroup.parent_id = parent_id
             da = StuffGroupDa()
-            da.save(StuffGroup)
+            da.save(stuffgroup)
             return True, stuffgroup
         except Exception as e:
-            return e
+            return False,str(e)
 
     @classmethod
     def edit(cls, id, title, parent_id):
         try:
             da = StuffGroupDa()
-            StuffGroup = da.find_by_id(id)
-            StuffGroup.id = id
-            StuffGroup.title = title
-            StuffGroup.parent_id = parent_id
-            da.edit(StuffGroup)
-            return True, StuffGroup
+            stuffGroup = da.find_by_id(StuffGroup,id)
+            stuffGroup.id = id
+            stuffGroup.title = title
+            stuffGroup.parent_id = parent_id
+            da.edit(stuffGroup)
+            return True, stuffGroup
         except Exception as e:
-            return e
+            return False,str(e)
 
     @classmethod
     def remove(cls, id):
         try:
             da = StuffGroupDa()
-            StuffGroup = da.find_by_id(id)
+            stuffGroup = da.find_by_id(StuffGroup,id)
             da.remove(id)
         except Exception as e:
-            return e
+            return False,str(e)
 
     @classmethod
     def find_all(cls):
@@ -42,27 +42,27 @@ class StuffGroupController:
             da = StuffGroupDa
             return da.find_all(StuffGroup)
         except Exception as e:
-            return e
+            return False,str(e)
     @classmethod
     def find_by_id(cls, id):
         try:
             da = StuffGroupDa()
-            return da.find_by_id(id)
+            return da.find_by_id(StuffGroup,id)
         except Exception as e:
-            return e
+            return False,str(e)
 
     @classmethod
     def find_by_title(cls, title):
         try:
             da = StuffGroupDa()
-            return da.find_by_title(title)
+            return da.find_by_title(StuffGroup,title)
         except Exception as e:
-            return e
+            return False, str(e)
 
     @classmethod
     def find_by_parent_id(cls, parent_id):
         try:
             da = StuffGroupDa()
-            return da.find_by_perent_id(parent_id)
+            return da.find_by_perent_id(StuffGroup,parent_id)
         except Exception as e:
-            return e
+            return False,str(e)

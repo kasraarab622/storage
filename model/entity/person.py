@@ -1,7 +1,8 @@
 import re
 from sqlalchemy import Column, Integer, String, Boolean
-from model.entity.base import Base
+from sqlalchemy.orm import relationship
 
+from model.entity import *
 
 class Person(Base):
     __tablename__ = "person_tbl"
@@ -16,6 +17,8 @@ class Person(Base):
     active = Column(Boolean,default=True)
     deleted = Column(Boolean, default=False)
 
+    transaction = relationship("Transaction",back_populates="person")
+
     def __init__(self, name, family, phone_number, email, username, password, active=True):
         self.name = name
         self.family = family
@@ -24,10 +27,7 @@ class Person(Base):
         self.username = username
         self.password = password
         self.active = active
-
-    # def __repr__(self):
-    #     return str(self.__dict__)
-
+    #
     # @property
     # def name(self):
     #     return self._name
@@ -45,7 +45,7 @@ class Person(Base):
     #
     # @family.setter
     # def family(self, family):
-    #     if isinstance(family, str) and re.match(r"^[a-zA-Z\s]{3,20}$", family):
+    #     if isinstance(family, str) and re.match(r"^[a-zA-Z\s]{4,20}$", family):
     #         self._family = family
     #     else:
     #         raise ValueError("Invalid Family")
@@ -78,7 +78,7 @@ class Person(Base):
     #
     # @username.setter
     # def username(self, username):
-    #     if isinstance(username, str) and re.match(r"^[\w\\\*\.\s]{5,20}", username):
+    #     if isinstance(username, str) and re.match(r"^[\w\.]{5,20}", username):
     #         self._username = username
     #     else:
     #         raise ValueError("Invalid UserName")

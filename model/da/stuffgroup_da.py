@@ -1,5 +1,5 @@
-from model.da.database import DataBaseManager
-from model.entity.stuff_group import StuffGroup
+from model.entity import *
+from model.da import *
 
 
 class StuffGroupDa(DataBaseManager):

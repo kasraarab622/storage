@@ -1,8 +1,8 @@
 import re
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
-from model.entity.base import Base
+from model.entity import *
 
 
 class Stuff(Base):
@@ -11,20 +11,19 @@ class Stuff(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(20))
     brand = Column(String(20))
+    group_id = Column(Integer, ForeignKey("stuff_group_tbl.id"))
     description = Column(String(200))
-    groupid = Column(Integer)
     deleted = Column(Boolean, default=False)
 
-    storage = relationship("Storage")
+    storage = relationship("Storage", back_populates="stuff")
+    stuff_group = relationship("StuffGroup")
+    # transaction = relationship("Transaction")
 
-    def __init__(self, name, brand, description, groupid):
+    def __init__(self, name, brand, description, stuff_group):
         self.name = name
         self.brand = brand
         self.description = description
-        self.groupid = groupid
-
-    def __repr__(self):
-        return str(self.__dict__)
+        self.stuff_group = stuff_group
     #
     # @property
     # def name(self):
@@ -54,7 +53,7 @@ class Stuff(Base):
     #
     # @description.setter
     # def description(self, description):
-    #     if isinstance(description, str) and re.match("[\w\.\s]{10,200}", description):
+    #     if isinstance(description, str) and re.match(r"^[\w\.\s]{10,200}$", description):
     #         self._description = description
     #     raise ValueError("Invalid Description")
     #

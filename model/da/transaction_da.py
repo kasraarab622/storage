@@ -1,18 +1,17 @@
-#ehtemam
-from model.da.database import DataBaseManager
-from model.entity.transaction import Transaction
+from model.entity import *
+from model.da import *
 
 class TransactionDa(DataBaseManager):
 
     def find_by_person_id(self,person_id):
         self.make_engine()
-        result = self.session.query(Transaction).filter(Transaction.person_id == person_id)
+        result = self.session.query(Transaction).filter(Transaction.person_id == person_id).all()
         self.session.close()
         return result
 
     def find_by_stuff_id(self,stuff_id):
         self.make_engine()
-        result = self.session.query(Transaction).filter(Transaction.stuff_id == stuff_id)
+        result = self.session.query(Transaction).filter(Transaction.stuff_id == stuff_id).all()
         self.session.close()
         return result
     def find_by_stuff_count(self,stuff_count):

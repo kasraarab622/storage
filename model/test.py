@@ -18,4 +18,4 @@ da = DataBaseManager()
 #
 # storage = Storage(stuff.id, 10)
 # da.save(storage)
-print(PersonController.save("ahmad", "messbah", "09178505323", "messbah.a@gmail.com", "ahmad", "ahmad123"))
+print(PersonController.save("ahmad", "messbah", "09178505323", "messbah.a@gmail.com", "ahmad", "ahmad123",True))

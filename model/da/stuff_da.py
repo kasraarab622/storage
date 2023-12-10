@@ -1,7 +1,5 @@
-# ehtemam
-from model.da.database import DataBaseManager
-from model.entity.stuff import Stuff
-
+from model.entity import *
+from model.da import *
 
 class StuffDa(DataBaseManager):
 
